@@ -3,5 +3,7 @@
     <livewire:chat.chat-list />
 
     <!-- Right -->
-    {{ $slot }}
+    <div class="flex-1">
+        {{ $slot }}
+    </div>
 </div>

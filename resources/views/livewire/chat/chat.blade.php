@@ -1,5 +1,5 @@
 <x-chat.layout>
-    <div class="w-2/3 border flex flex-col">
+    <div class=" border flex flex-col">
         <!-- Header -->
         <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
             <div class="flex items-center">
