@@ -17,6 +17,7 @@
             </p>
         </div>
         <p class="flex items-start space-x-2  text-grey-dark mt-1 text-sm text-gray-500">
+            {{-- Double ticks --}}
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-check2-all w-4 text-blue-500"
                 viewBox="0 0 16 16">
                 <path

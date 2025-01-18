@@ -1,4 +1,4 @@
-<div class=" border flex flex-col bg-white">
+<div class="border flex flex-col bg-white">
     <!-- Header -->
     <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
         <div>
