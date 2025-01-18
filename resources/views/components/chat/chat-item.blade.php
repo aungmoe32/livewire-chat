@@ -2,7 +2,7 @@
     'active' => false,
     'name' => 'User',
 ])
-<div class="px-3 flex items-center  cursor-pointer hover:bg-white/10 {{ $active ? 'bg-white/10' : 'bg-white' }}">
+<div class="px-3 flex items-center  cursor-pointer hover:bg-gray-100 {{ $active ? 'bg-gray-200' : 'bg-white' }}">
     <div>
         <img class="h-12 w-12 rounded-full"
             src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg" />
@@ -12,7 +12,7 @@
             <p class="text-grey-darkest">
                 {{ $name }}
             </p>
-            <p class="text-xs text-grey-darkest">
+            <p class="text-[13px] text-gray-500">
                 12:45 pm
             </p>
         </div>

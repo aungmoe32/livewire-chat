@@ -1,4 +1,4 @@
-<div class="w-1/3 border flex flex-col">
+<div class="w-1/3 border flex flex-col bg-white">
     <!-- Header -->
     <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
         <div>
@@ -36,7 +36,7 @@
     </div>
 
     <!-- Contacts -->
-    <div class="bg-grey-lighter flex-1 overflow-auto">
+    <div class=" flex-1 overflow-auto">
         <x-chat.chat-item active />
         <x-chat.chat-item name="John" />
         <x-chat.chat-item />

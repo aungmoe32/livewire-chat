@@ -1,7 +1,5 @@
-<div class="flex border border-grey rounded shadow-lg h-screen w-full absolute top-0 left-0 pt-16 ">
-    <!-- Left -->
-    <livewire:chat.chat-list />
-
-    <!-- Right -->
-    <livewire:chat.chat />
-</div>
+<x-chat.layout>
+    <div class="flex justify-center items-center w-full">
+        choose
+    </div>
+</x-chat.layout>
