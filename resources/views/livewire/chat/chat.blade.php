@@ -1,4 +1,4 @@
-<x-chat.layout>
+<x-chat.layout :conversation='$conversation'>
     <div class="flex-1 border flex flex-col">
         <!-- Header -->
         <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">

@@ -24,7 +24,7 @@ class Users extends Component
 
         if ($existingConversation) {
             # Conversation already exists, redirect to existing conversation
-            return redirect()->route('chat', ['conversation_id' => $existingConversation->id]);
+            return redirect()->route('chat', ['conversation' => $existingConversation->id]);
         }
 
         # Create new conversation
@@ -33,7 +33,7 @@ class Users extends Component
             'receiver_id' => $userId,
         ]);
 
-        return redirect()->route('chat', ['conversation_id' => $createdConversation->id]);
+        return redirect()->route('chat', ['conversation' => $createdConversation->id]);
     }
 
     public function render()
