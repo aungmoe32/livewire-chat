@@ -1,4 +1,5 @@
 <div class="border flex flex-col bg-white">
+    {{-- {{ dd($selectedConversation) }} --}}
     <!-- Header -->
     <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
         <div>
@@ -35,11 +36,14 @@
         <input type="text" class="w-full px-2 py-2 text-sm" placeholder="Search or start new chat" />
     </div>
 
-    <!-- Contacts -->
+    <!-- Conversations -->
     <div class=" flex-1 overflow-auto">
-        <x-chat.chat-item active />
-        <x-chat.chat-item name="John" />
-        <x-chat.chat-item />
-
+        @if ($conversations)
+            @foreach ($conversations as $key => $conversation)
+                <x-chat.chat-item :active="$conversation->id == $selectedConversation?->id" :conversation="$conversation" :key="$key" />
+            @endforeach
+        @else
+            <div>Empty List</div>
+        @endif
     </div>
 </div>

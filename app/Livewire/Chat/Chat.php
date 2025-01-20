@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Chat extends Component
 {
-    public Conversation $conversation;
+    public Conversation $conversation; // Selected Conversation
 
     public function render()
     {
