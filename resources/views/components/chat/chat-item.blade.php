@@ -4,17 +4,23 @@
     'conversation' => null,
 ])
 
+
 <a href="{{ route('chat', $conversation->id) }}">
     <div class="px-3 flex items-center  cursor-pointer hover:bg-gray-100 {{ $active ? 'bg-gray-100' : 'bg-white' }}">
         <div>
+            {{-- Profile Image --}}
             <img src="https://randomuser.me/api/portraits/men/{{ $key }}.jpg" alt="image"
                 class="w-12  rounded-full shadow-lg">
         </div>
         <div class="ml-4 flex-1 border-b border-grey-lighter py-4">
             <div class="flex items-center space-x-4 justify-center ">
+                {{-- Name --}}
                 <p class="text-grey-darkest">
                     {{ $conversation->getReceiver()->name }}
+                    [{{ $conversation->getReceiver()->id }}]
                 </p>
+
+                {{-- Date --}}
                 <p class="text-[13px] text-gray-500">
                     {{ $conversation->messages?->last()?->created_at?->shortAbsoluteDiffForHumans() }}
                 </p>
