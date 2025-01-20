@@ -1,5 +1,10 @@
-<div class="border flex flex-col bg-white">
-    {{-- {{ dd($selectedConversation) }} --}}
+<div class="border flex flex-col bg-white" x-data="{ selectedConversationId: @entangle('selectedConversationId') }" x-init="setTimeout(() => {
+    conversationElement = document.getElementById('conversation-' + selectedConversationId);
+    if (conversationElement) {
+        conversationElement.scrollIntoView({ 'behavior': 'smooth' });
+    }
+}, 200);">
+
     <!-- Header -->
     <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
         <div>

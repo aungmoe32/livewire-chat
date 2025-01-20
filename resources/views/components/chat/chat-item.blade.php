@@ -5,7 +5,7 @@
 ])
 
 
-<a href="{{ route('chat', $conversation->id) }}">
+<a href="{{ route('chat', $conversation->id) }}" id="conversation-{{ $conversation->id }}">
     <div class="px-3 flex items-center  cursor-pointer hover:bg-gray-100 {{ $active ? 'bg-gray-100' : 'bg-white' }}">
         <div>
             {{-- Profile Image --}}
