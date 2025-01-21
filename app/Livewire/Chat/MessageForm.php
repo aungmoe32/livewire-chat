@@ -22,6 +22,7 @@ class MessageForm extends Component
             'body' => $this->body
         ]);
         $this->pull('body');
+        $this->dispatch('refresh-messages');
     }
 
 

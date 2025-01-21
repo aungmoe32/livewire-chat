@@ -65,7 +65,7 @@
 
                 @if ($loadedMessages)
                     @foreach ($loadedMessages as $message)
-                        <x-chat.message :body="$message->body" :is-mine="$message->sender_id == auth()->id()" />
+                        <x-chat.message :message="$message" :is-mine="$message->sender_id == auth()->id()" />
                     @endforeach
                 @endif
 
