@@ -1,5 +1,11 @@
 <x-chat.layout :selected-conversation="$conversation">
-    <div class="flex-1 border flex flex-col">
+    <div class="flex-1 border flex flex-col" x-data="{
+        height: 0,
+        msgContainerElement: document.getElementById('messages-container'),
+    }" x-init="height = msgContainerElement.scrollHeight;
+    msgContainerElement.scrollTop = height"
+        x-on:scroll-bottom.window="$nextTick(()=>msgContainerElement.scrollTop = height)">
+
         <!-- Header -->
         <div class="py-2 px-3 bg-white flex flex-row justify-between items-center">
             <div class="flex items-center">
@@ -43,38 +49,34 @@
         </div>
 
         <!-- Messages -->
-        <div class="flex-1 overflow-auto" style="background-color: #dad3cc">
-            <div class="py-2 px-3">
-                <div class="flex justify-center mb-2">
-                    <div class="rounded py-2 px-4" style="background-color: #ddecf2">
-                        <p class="text-sm uppercase">
-                            February 20, 2018
-                        </p>
-                    </div>
+        <div class="flex-1 overflow-auto py-2 px-3" style="background-color: #dad3cc" id="messages-container">
+            <div class="flex justify-center mb-2">
+                <div class="rounded py-2 px-4" style="background-color: #ddecf2">
+                    <p class="text-sm uppercase">
+                        February 20, 2018
+                    </p>
                 </div>
-
-                <div class="flex justify-center mb-4">
-                    <div class="rounded py-2 px-4" style="background-color: #fcf4cb">
-                        <p class="text-xs">
-                            Messages to this chat and calls are now
-                            secured with end-to-end encryption. Tap
-                            for more info.
-                        </p>
-                    </div>
-                </div>
-
-                @if ($loadedMessages)
-                    @foreach ($loadedMessages as $message)
-                        <x-chat.message :message="$message" :is-mine="$message->sender_id == auth()->id()" />
-                    @endforeach
-                @endif
-
-
             </div>
+
+            <div class="flex justify-center mb-4">
+                <div class="rounded py-2 px-4" style="background-color: #fcf4cb">
+                    <p class="text-xs">
+                        Messages to this chat and calls are now
+                        secured with end-to-end encryption. Tap
+                        for more info.
+                    </p>
+                </div>
+            </div>
+
+            @if ($loadedMessages)
+                @foreach ($loadedMessages as $message)
+                    <x-chat.message :message="$message" :is-mine="$message->sender_id == auth()->id()" />
+                @endforeach
+            @endif
         </div>
+
         <!-- Input -->
         <livewire:chat.message-form :selected-conversation="$conversation" />
-    </div>
     </div>
 
 </x-chat.layout>

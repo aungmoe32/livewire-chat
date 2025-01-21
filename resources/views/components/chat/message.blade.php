@@ -10,7 +10,7 @@
         <div class="flex justify-center items-center space-x-1">
             <div class="flex-1"></div>
             <p class="text-right text-xs text-gray-500">
-                12:45 pm
+                {{ $message->created_at->format('g:i a') }}
             </p>
 
             @if ($isMine)
