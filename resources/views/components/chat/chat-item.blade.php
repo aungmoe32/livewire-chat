@@ -17,7 +17,6 @@
                 {{-- Name --}}
                 <p class="text-grey-darkest">
                     {{ $conversation->getReceiver()->name }}
-                    [{{ $conversation->getReceiver()->id }}]
                 </p>
 
                 {{-- Date --}}

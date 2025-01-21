@@ -11,7 +11,7 @@ class ChatList extends Component
 
     public function mount()
     {
-        $this->selectedConversationId = $this->selectedConversation->id;
+        $this->selectedConversationId = $this->selectedConversation?->id;
     }
 
     public function render()
