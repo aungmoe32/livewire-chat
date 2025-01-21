@@ -1,7 +1,7 @@
 <x-chat.layout :selected-conversation="$conversation">
     <div class="flex-1 border flex flex-col">
         <!-- Header -->
-        <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
+        <div class="py-2 px-3 bg-white flex flex-row justify-between items-center">
             <div class="flex items-center">
                 <div>
                     <img class="w-10 h-10 rounded-full"
@@ -69,9 +69,8 @@
 
             </div>
         </div>
-
         <!-- Input -->
-        <x-chat.input />
+        <livewire:chat.message-form :selected-conversation="$conversation" />
     </div>
     </div>
 
