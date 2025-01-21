@@ -63,8 +63,11 @@
                     </div>
                 </div>
 
-                <x-chat.message body="hello" />
-                <x-chat.message isMine />
+                @if ($loadedMessages)
+                    @foreach ($loadedMessages as $message)
+                        <x-chat.message :body="$message->body" :is-mine="$message->sender_id == auth()->id()" />
+                    @endforeach
+                @endif
 
 
             </div>

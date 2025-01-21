@@ -21,7 +21,6 @@ class MessageForm extends Component
             'receiver_id' => $this->selectedConversation->getReceiver()->id,
             'body' => $this->body
         ]);
-        dd($createdMessage);
         $this->pull('body');
     }
 
