@@ -48,7 +48,15 @@
         if(scropTop <= 0){
           $dispatch('load-more');
         }"
-            class="flex-1 overflow-auto py-2 px-3 bg-gray-200" id="messages-container">
+            @update-chat-height.window="
+            $nextTick(() => {
+                newHeight= $el.scrollHeight;
+                oldHeight= height;
+                $el.scrollTop= newHeight- oldHeight;
+                height=newHeight;
+            })
+     "
+            class="flex-1 overflow-auto px-3 py-4 bg-gray-200" id="messages-container">
 
             {{-- Messages List --}}
             @if ($loadedMessages)

@@ -49,9 +49,13 @@ class Chat extends Component
     #[On('load-more')]
     public function loadMore(): void
     {
+        // Add 10 more messages to load
         $this->paginate_var += 10;
 
         $this->loadMessages();
+
+        // Dispatch to browser on Chat Component to restore scroll position when new messages loaded
+        $this->dispatch('update-chat-height');
     }
 
     public function render()
