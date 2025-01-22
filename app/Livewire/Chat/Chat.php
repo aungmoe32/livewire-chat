@@ -11,6 +11,7 @@ class Chat extends Component
 {
     public Conversation $conversation; // Selected Conversation
     public $loadedMessages;
+    public $paginate_var = 10;
 
     public function mount()
     {
@@ -34,9 +35,24 @@ class Chat extends Component
 
     public function loadMessages()
     {
-        $this->loadedMessages = $this->conversation->messages;
+        $count = Message::where('conversation_id', $this->conversation->id)
+            ->count();
+
+        $this->loadedMessages = Message::where('conversation_id', $this->conversation->id)
+            ->skip($count - $this->paginate_var)
+            ->take($this->paginate_var)
+            ->get();
+
+        return $this->loadedMessages;
     }
 
+    #[On('load-more')]
+    public function loadMore(): void
+    {
+        $this->paginate_var += 10;
+
+        $this->loadMessages();
+    }
 
     public function render()
     {

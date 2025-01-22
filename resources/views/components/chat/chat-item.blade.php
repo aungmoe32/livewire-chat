@@ -55,7 +55,8 @@
                         @endif
                     @endif
 
-                    <span class="ml-2 text-gray-400">
+                    <span
+                        class="ml-2  {{ $lastMsg->receiver_id == auth()->id() && $lastMsg->read_at == null ? 'font-bold text-black' : 'text-gray-400' }}">
                         {{ $lastMsg->body }}
                     </span>
 
