@@ -9,16 +9,10 @@
         <!-- Header -->
         <div class="py-2 px-3 bg-white flex flex-row justify-between items-center">
             <div class="flex items-center">
-                <div>
-                    <img class="w-10 h-10 rounded-full"
-                        src="https://darrenjameseeley.files.wordpress.com/2014/09/expendables3.jpeg" />
-                </div>
+                <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/0.jpg" />
                 <div class="ml-4">
                     <p class="text-grey-darkest">
-                        New Movie! Expendables 4
-                    </p>
-                    <p class="text-grey-darker text-xs mt-1">
-                        Andrés, Tom, Harrison, Arnold, Sylvester
+                        {{ $conversation->getReceiver()->name }}
                     </p>
                 </div>
             </div>
@@ -50,14 +44,22 @@
 
         <!-- Messages -->
         <div class="flex-1 overflow-auto py-2 px-3" style="background-color: #dad3cc" id="messages-container">
-            <div class="flex justify-center mb-2">
-                <div class="rounded py-2 px-4" style="background-color: #ddecf2">
-                    <p class="text-sm uppercase">
-                        February 20, 2018
-                    </p>
-                </div>
-            </div>
 
+            {{-- First Message Date --}}
+            @php
+                $date = $conversation->firstMessageDate();
+            @endphp
+            @if ($date)
+                <div class="flex justify-center mb-2">
+                    <div class="rounded py-1 px-2" style="background-color: #ddecf2">
+                        <p class="text-xs">
+                            {{ $date }}
+                        </p>
+                    </div>
+                </div>
+            @endif
+
+            {{-- Chat Security --}}
             <div class="flex justify-center mb-4">
                 <div class="rounded py-2 px-4" style="background-color: #fcf4cb">
                     <p class="text-xs">
@@ -68,6 +70,7 @@
                 </div>
             </div>
 
+            {{-- Messages List --}}
             @if ($loadedMessages)
                 @foreach ($loadedMessages as $message)
                     <x-chat.message :message="$message" :is-mine="$message->sender_id == auth()->id()" />
@@ -75,7 +78,7 @@
             @endif
         </div>
 
-        <!-- Input -->
+        <!-- Chat Input -->
         <livewire:chat.message-form :selected-conversation="$conversation" />
     </div>
 

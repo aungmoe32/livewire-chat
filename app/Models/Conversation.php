@@ -19,6 +19,11 @@ class Conversation extends Model
         return $this->hasMany(Message::class);
     }
 
+    public function firstMessageDate()
+    {
+        return $this->messages()->first()?->created_at?->format('Y-M-d');
+    }
+
     public function getReceiver()
     {
         if ($this->sender_id === auth()->id()) {
