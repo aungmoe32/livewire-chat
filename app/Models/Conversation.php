@@ -36,6 +36,16 @@ class Conversation extends Model
             ->whereNull('read_at')->count();
     }
 
+    public  function isLastMessageReadByUser(): bool
+    {
+        $lastMessage = $this->lastMessage();
+
+        if ($lastMessage) {
+            return  $lastMessage->read_at !== null && $lastMessage->sender_id == auth()->id();
+        }
+        return false;
+    }
+
     public function getReceiver()
     {
         if ($this->sender_id === auth()->id()) {

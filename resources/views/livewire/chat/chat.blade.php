@@ -45,6 +45,17 @@
         <!-- Messages -->
         <div class="flex-1 overflow-auto py-2 px-3 bg-gray-200" id="messages-container">
 
+            {{-- Chat Security --}}
+            <div class="flex justify-center my-4">
+                <div class="rounded py-2 px-4 bg-gray-400 text-white">
+                    <p class="text-xs">
+                        Messages to this chat and calls are now
+                        secured with end-to-end encryption. Tap
+                        for more info.
+                    </p>
+                </div>
+            </div>
+
             {{-- First Message Date --}}
             @php
                 $date = $conversation->firstMessageDate();
@@ -58,17 +69,6 @@
                     </div>
                 </div>
             @endif
-
-            {{-- Chat Security --}}
-            <div class="flex justify-center mb-4">
-                <div class="rounded py-2 px-4 bg-gray-400 text-white">
-                    <p class="text-xs">
-                        Messages to this chat and calls are now
-                        secured with end-to-end encryption. Tap
-                        for more info.
-                    </p>
-                </div>
-            </div>
 
             {{-- Messages List --}}
             @if ($loadedMessages)
