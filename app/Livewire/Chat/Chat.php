@@ -15,6 +15,12 @@ class Chat extends Component
     public function mount()
     {
         $this->loadMessages();
+
+        // Mark message belogning to receiver as read
+        Message::where('conversation_id', $this->conversation->id)
+            ->where('receiver_id', auth()->id())
+            ->whereNull('read_at')
+            ->update(['read_at' => now()]);
     }
 
     #[On('refresh-messages')]
@@ -30,6 +36,7 @@ class Chat extends Component
     {
         $this->loadedMessages = $this->conversation->messages;
     }
+
 
     public function render()
     {
