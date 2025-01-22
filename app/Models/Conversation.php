@@ -29,6 +29,13 @@ class Conversation extends Model
         return $this->messages()->latest()->first();
     }
 
+    public function unreadMessagesCount(): int
+    {
+        return Message::where('conversation_id', '=', $this->id)
+            ->where('receiver_id', auth()->user()->id)
+            ->whereNull('read_at')->count();
+    }
+
     public function getReceiver()
     {
         if ($this->sender_id === auth()->id()) {

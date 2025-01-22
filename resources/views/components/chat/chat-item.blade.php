@@ -13,7 +13,7 @@
             class="w-12  rounded-full shadow-lg">
 
         <div class="flex-1 border-b border-grey-lighter py-4">
-            <div class="flex flex-1 items-center space-x-4 justify-center ">
+            <div class="flex flex-1 items-center space-x-4 justify-between ">
                 {{-- Name --}}
                 <p class="text-grey-darkest">
                     {{ $conversation->getReceiver()->name }}
@@ -27,8 +27,9 @@
 
             @php
                 $lastMsg = $conversation->lastMessage();
+                $unreadMsgCount = $conversation->unreadMessagesCount();
             @endphp
-            <p class="flex items-start space-x-2  text-grey-dark mt-1 text-sm text-gray-500">
+            <div class="flex items-center   text-grey-dark mt-1 text-sm text-gray-500">
                 @if ($lastMsg)
                     {{-- single ticks --}}
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -45,11 +46,17 @@
                        <path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708z" />
                    </svg> --}}
 
-                    <span>
+                    <span class="ml-2">
                         {{ $lastMsg->body }}
                     </span>
+
+                    @if ($unreadMsgCount)
+                        <div class="ml-auto bg-blue-400 rounded-full px-2 text-white text-xs">
+                            {{ $unreadMsgCount }}
+                        </div>
+                    @endif
                 @endif
-            </p>
+            </div>
         </div>
     </a>
     <x-chat.dropdown></x-chat-dropdown>
