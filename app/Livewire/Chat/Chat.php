@@ -21,6 +21,8 @@ class Chat extends Component
     public function refreshMsgs()
     {
         $this->loadMessages();
+
+        // Event on browser to scroll bottom of chats
         $this->dispatch('scroll-bottom');
     }
 

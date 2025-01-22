@@ -15,14 +15,22 @@ class MessageForm extends Component
     public function save()
     {
         $this->validate();
+
         $createdMessage = Message::create([
             'conversation_id' => $this->selectedConversation->id,
             'sender_id' => auth()->id(),
             'receiver_id' => $this->selectedConversation->getReceiver()->id,
             'body' => $this->body
         ]);
+
         $this->pull('body');
-        $this->dispatch('refresh-messages');
+
+        // Refresh messages for Chat Component
+        $this->dispatch('refresh-messages')->to(Chat::class);
+
+        // Update Conversation Date
+        $this->selectedConversation->updated_at = now();
+        $this->selectedConversation->save();
     }
 
 
