@@ -3,7 +3,9 @@
 namespace App\Livewire\Chat;
 
 use Livewire\Component;
+use Livewire\Attributes\On;
 
+#[On('refresh')]
 class ChatList extends Component
 {
     public $selectedConversation;

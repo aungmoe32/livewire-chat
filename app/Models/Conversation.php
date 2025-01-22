@@ -24,6 +24,11 @@ class Conversation extends Model
         return $this->messages()->first()?->created_at?->format('Y-M-d');
     }
 
+    public function lastMessage()
+    {
+        return $this->messages()->latest()->first();
+    }
+
     public function getReceiver()
     {
         if ($this->sender_id === auth()->id()) {

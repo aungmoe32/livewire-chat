@@ -31,6 +31,9 @@ class MessageForm extends Component
         // Update Conversation Date
         $this->selectedConversation->updated_at = now();
         $this->selectedConversation->save();
+
+        // Refresh ChatList latest conversations
+        $this->dispatch('refresh')->to(ChatList::class);
     }
 
 
