@@ -3,6 +3,8 @@
 namespace App\Livewire\Chat;
 
 use App\Models\Message;
+use App\Notifications\MessageSent;
+use Illuminate\Support\Facades\Broadcast;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
 
@@ -34,6 +36,12 @@ class MessageForm extends Component
 
         // Refresh ChatList latest conversations
         $this->dispatch('refresh')->to(ChatList::class);
+
+        $receiver = $this->selectedConversation->getReceiver();
+
+        // Broadcast message sent notification
+        $receiver
+            ->notify(new MessageSent(auth()->user(), $createdMessage, $this->selectedConversation, $receiver->id));
     }
 
 
