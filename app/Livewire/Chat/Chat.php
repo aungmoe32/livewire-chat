@@ -6,6 +6,7 @@ use App\Models\Message;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Models\Conversation;
+use App\Notifications\MessageSent;
 
 class Chat extends Component
 {
@@ -33,6 +34,7 @@ class Chat extends Component
         $this->dispatch('scroll-bottom');
     }
 
+    // Load latest messages based on paginate_var
     public function loadMessages()
     {
         $count = Message::where('conversation_id', $this->conversation->id)
@@ -56,6 +58,23 @@ class Chat extends Component
 
         // Dispatch to browser on Chat Component to restore scroll position when new messages loaded
         $this->dispatch('update-chat-height');
+    }
+
+    public function getListeners()
+    {
+        $auth_id = auth()->user()->id;
+        return [
+            "echo-private:users.{$auth_id},.Illuminate\\Notifications\\Events\\BroadcastNotificationCreated" => 'onBroadcastedNotifications'
+        ];
+    }
+
+    public function onBroadcastedNotifications($event)
+    {
+        if ($event['type'] == MessageSent::class) {
+            if ($event['conversation_id'] == $this->conversation->id) {
+                $this->refreshMsgs();
+            }
+        }
     }
 
     public function render()

@@ -39,7 +39,7 @@ class MessageForm extends Component
 
         $receiver = $this->selectedConversation->getReceiver();
 
-        // Broadcast message sent notification
+        // Queue broadcast message sent notification
         $receiver
             ->notify(new MessageSent(auth()->user(), $createdMessage, $this->selectedConversation, $receiver->id));
     }
