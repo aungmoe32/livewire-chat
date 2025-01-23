@@ -3,7 +3,14 @@
     if (conversationElement) {
         conversationElement.scrollIntoView({ 'behavior': 'smooth' });
     }
-}, 200);">
+}, 200);
+
+Echo.private('users.{{ Auth()->User()->id }}')
+    .notification((notification) => {
+        if (notification['type'] == 'App\\Notifications\\MessageRead' || notification['type'] == 'App\\Notifications\\MessageSent') {
+            $wire.$refresh();
+        }
+    });">
 
     <!-- Header -->
     <div class="py-2 px-3 bg-grey-lighter flex flex-row justify-between items-center">
