@@ -6,6 +6,7 @@ use App\Models\Message;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Models\Conversation;
+use App\Notifications\MessageRead;
 use App\Notifications\MessageSent;
 
 class Chat extends Component
@@ -72,9 +73,23 @@ class Chat extends Component
     {
         if ($event['type'] == MessageSent::class) {
             if ($event['conversation_id'] == $this->conversation->id) {
+                $newMessage = Message::find($event['message_id']);
+
+                // Mark Read
+                $newMessage->read_at = now();
+                $newMessage->save();
+
+                // Broadcast message read
+                $this->conversation->getReceiver()
+                    ->notify(new MessageRead($this->conversation->id));
+
                 $this->refreshMsgs();
             }
         }
+
+        // if ($event['type'] == MessageRead::class) {
+        // $this->refreshMsgs();
+        // }
     }
 
     public function render()

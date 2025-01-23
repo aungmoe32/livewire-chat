@@ -1,10 +1,18 @@
 <x-chat.layout :selected-conversation="$conversation">
     <div class="flex-1 border flex flex-col" x-data="{
         height: 0,
+        markAsRead: null,
         msgContainerElement: document.getElementById('messages-container'),
     }" x-init="height = msgContainerElement.scrollHeight;
-    msgContainerElement.scrollTop = height"
-        x-on:scroll-bottom.window="$nextTick(()=>msgContainerElement.scrollTop = height)">
+    msgContainerElement.scrollTop = height
+    
+    Echo.private('users.{{ Auth()->User()->id }}')
+        .notification((notification) => {
+            if (notification['type'] == 'App\\Notifications\\MessageRead' && notification['conversation_id'] == {{ $conversation->id }}) {
+                markAsRead = true;
+            }
+        });"
+        x-on:scroll-bottom.window="$nextTick(()=>msgContainerElement.scrollTop = msgContainerElement.scrollHeight)">
 
         <!-- Header -->
         <div class="py-2 px-3 bg-white flex flex-row justify-between items-center">
