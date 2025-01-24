@@ -29,7 +29,8 @@
                 $lastMsg = $conversation->lastMessage();
                 $unreadMsgCount = $conversation->unreadMessagesCount();
             @endphp
-            <div class="flex items-center   text-grey-dark mt-1 text-sm text-gray-500">
+
+            <div class="flex items-center {{ $lastMsg ? '' : 'py-2' }}  text-grey-dark text-sm text-gray-500">
 
                 @if ($lastMsg)
                     @if ($lastMsg->sender_id == auth()->id())
