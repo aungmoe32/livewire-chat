@@ -18,12 +18,14 @@ Echo.private('users.{{ Auth()->User()->id }}')
 
     {{-- Filter Chats --}}
     <div class="flex justify-start items-center p-2 space-x-2 mb-2" x-data="{ type: 'all' }">
-        <button @click="type='all'" :class="{ 'bg-blue-100 border-0 text-black': type == 'all' }"
+        <button wire:click="filterChats('all')" @click="type='all'"
+            :class="{ 'bg-blue-100 border-0 text-black': type == 'all' }"
             class="inline-flex justify-center items-center rounded-full gap-x-1 text-xs font-medium px-3 lg:px-5 py-1  lg:py-2.5 border ">
             All
         </button>
 
-        <button @click="type='deleted'" :class="{ 'bg-blue-100 border-0 text-black': type == 'deleted' }"
+        <button wire:click="filterChats('deleted')" @click="type='deleted'"
+            :class="{ 'bg-blue-100 border-0 text-black': type == 'deleted' }"
             class="inline-flex justify-center items-center rounded-full gap-x-1 text-xs font-medium px-3 lg:px-5 py-1  lg:py-2.5 border ">
             Deleted
         </button>

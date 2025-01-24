@@ -55,13 +55,31 @@ class Conversation extends Model
         }
     }
 
+    public function scopeWhereDeleted($query)
+    {
+        $userId = auth()->id();
+
+        return $query->where(function ($query) use ($userId) {
+            # Conversations that have some messages which are deleted by me
+            $query->whereHas('messages', function ($query) use ($userId) {
+
+                $query->where(function ($query) use ($userId) {
+                    $query->where('sender_id', $userId)
+                        ->whereNotNull('sender_deleted_at');
+                })->orWhere(function ($query) use ($userId) {
+                    $query->where('receiver_id', $userId)
+                        ->whereNotNull('receiver_deleted_at');
+                });
+            });
+        });
+    }
 
     public function scopeWhereNotDeleted($query)
     {
         $userId = auth()->id();
 
         return $query->where(function ($query) use ($userId) {
-            # Conversations that have messages which are not deleted by me
+            # Conversations that have some messages which are not deleted by me
             $query->whereHas('messages', function ($query) use ($userId) {
 
                 $query->where(function ($query) use ($userId) {
