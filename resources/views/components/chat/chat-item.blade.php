@@ -69,5 +69,6 @@
             </div>
         </div>
     </a>
-    <x-chat.dropdown></x-chat-dropdown>
+
+    @livewire('chat.dropdown', ['conversation' => $conversation])
 </div>

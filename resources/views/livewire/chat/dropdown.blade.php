@@ -1,8 +1,8 @@
 <x-dropdown align="right" width="48">
     <x-slot name="trigger">
         <button>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                class="bi bi-three-dots-vertical w-4 text-gray-700" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-three-dots-vertical w-4 text-gray-700"
+                viewBox="0 0 16 16">
                 <path
                     d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
             </svg>
@@ -30,7 +30,8 @@
                 View Profile
 
             </button>
-            <button
+            <button wire:click="deleteByUser('{{ encrypt($conversation->id) }}')"
+                wire:confirm="Are you sure you want to delete this post?"
                 class="items-center gap-3 flex w-full px-4 py-2 text-left text-sm leading-5 text-gray-500 hover:bg-gray-100 transition-all duration-150 ease-in-out focus:outline-none focus:bg-gray-100">
 
                 <span>
