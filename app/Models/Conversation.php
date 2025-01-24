@@ -54,4 +54,26 @@ class Conversation extends Model
             return User::firstWhere('id', $this->sender_id);
         }
     }
+
+
+    public function scopeWhereNotDeleted($query)
+    {
+        $userId = auth()->id();
+
+        return $query->where(function ($query) use ($userId) {
+            # Conversations that have messages which are not deleted by me
+            $query->whereHas('messages', function ($query) use ($userId) {
+
+                $query->where(function ($query) use ($userId) {
+                    $query->where('sender_id', $userId)
+                        ->whereNull('sender_deleted_at');
+                })->orWhere(function ($query) use ($userId) {
+                    $query->where('receiver_id', $userId)
+                        ->whereNull('receiver_deleted_at');
+                });
+            })
+                # include conversations without messages
+                ->orWhereDoesntHave('messages');
+        });
+    }
 }
