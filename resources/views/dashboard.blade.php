@@ -11,6 +11,19 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
+
+                <div class="flex items-center justify-start p-4 space-x-2">
+                    <a href="/chat">
+                        <x-primary-button>
+                            Chats
+                        </x-primary-button>
+                    </a>
+                    <a href="/users">
+                        <x-secondary-button>
+                            Users
+                        </x-secondary-button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

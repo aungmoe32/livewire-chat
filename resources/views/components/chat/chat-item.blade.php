@@ -71,6 +71,8 @@
         </div>
     </a>
 
-    <livewire:chat.dropdown :conversation="$conversation" :key="'dropdown_' . $key" />
+    <div class="m-1">
+        <livewire:chat.dropdown :conversation="$conversation" :key="'dropdown_' . $key" />
+    </div>
 
 </div>
