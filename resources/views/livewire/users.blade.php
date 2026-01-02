@@ -7,8 +7,7 @@
             <div class="w-full bg-white border border-gray-200 rounded-lg p-5 shadow">
 
                 <div class="flex flex-col items-center pb-10">
-
-                    <img src="https://randomuser.me/api/portraits/men/{{ $key }}.jpg" alt="image"
+                    <img src="https://i.pravatar.cc/150?img={{ $user->id }}" alt="image"
                         class="w-24 h-24 mb-2 5 rounded-full shadow-lg">
 
                     <h5 class="mb-1 text-xl font-medium text-gray-900 ">

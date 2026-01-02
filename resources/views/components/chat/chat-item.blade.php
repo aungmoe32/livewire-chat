@@ -9,7 +9,7 @@
     <a href="{{ route('chat', $conversation->id) }}" id="conversation-{{ $conversation->id }}"
         class="flex-1 flex justify-center items-center space-x-2">
         {{-- Profile Image --}}
-        <img src="https://randomuser.me/api/portraits/men/{{ $key }}.jpg" alt="image"
+        <img src="https://i.pravatar.cc/150?img={{ $conversation->getReceiver()->id }}" alt="image"
             class="w-12  rounded-full shadow-lg">
 
         <div class="flex-1 border-b border-grey-lighter py-4">

@@ -5,7 +5,7 @@
         msgContainerElement: document.getElementById('messages-container'),
     }" x-init="height = msgContainerElement.scrollHeight;
     msgContainerElement.scrollTop = height
-    
+
     Echo.private('users.{{ Auth()->User()->id }}')
         .notification((notification) => {
             if (notification['type'] == 'App\\Notifications\\MessageRead' && notification['conversation_id'] == {{ $conversation->id }}) {
@@ -17,7 +17,8 @@
         <!-- Header -->
         <div class="py-2 px-3 bg-white flex flex-row justify-between items-center">
             <div class="flex items-center">
-                <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/men/0.jpg" />
+                <img class="w-10 h-10 rounded-full"
+                    src="https://i.pravatar.cc/150?img={{ $conversation->getReceiver()->id }}" />
                 <div class="ml-4">
                     <p class="text-grey-darkest">
                         {{ $conversation->getReceiver()->name }}
