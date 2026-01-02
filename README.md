@@ -4,6 +4,22 @@
 
 A modern, real-time chat application built with the **TALL stack** (TailwindCSS, Alpine.js, Laravel, Livewire). This application demonstrates advanced real-time messaging capabilities with user authentication, message read receipts, conversation management, and a responsive design.
 
+## 🌐 **Live Demo**
+
+**🚀 Try the live demo:** [https://tall-stack-chat-main-uev0h0.laravel.cloud/](https://tall-stack-chat-main-uev0h0.laravel.cloud/)
+
+Experience the application in action with:
+- ✅ **Pre-seeded test users** for instant testing
+- ⚡ **Real-time messaging** with WebSocket connectivity
+- 📱 **Responsive design** that works on any device
+- 🔒 **Complete authentication** system
+- 💬 **Live chat features** including read receipts
+
+*Note: Demo data may be reset periodically for testing purposes.*
+
+---
+
+**📚 Additional Documentation:**
 -   [View Realtime Messaging Flow](REALTIME_FLOW.md)
 
 ## 📖 **Table of Contents**
