@@ -5,7 +5,9 @@ use App\Livewire\Chat\Chat;
 use App\Livewire\Chat\Index;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+});
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
