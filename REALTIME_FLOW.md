@@ -1,38 +1,38 @@
-# 🔄 Real-Time Flow Documentation
+#  Real-Time Flow Documentation
 ## TALL Stack Chat App - WebSocket & Broadcasting Architecture
 
 ![Real-Time Flow](https://img.shields.io/badge/Real--Time-Pusher_WebSocket-blue) ![Laravel](https://img.shields.io/badge/Laravel-11-red) ![Livewire](https://img.shields.io/badge/Livewire-3-green)
 
 ---
 
-## 📖 Table of Contents
+##  Table of Contents
 
-- [🎯 Overview](#-overview)
-- [🏗️ Architecture Components](#️-architecture-components)
-- [🔄 Complete Message Flow](#-complete-message-flow)
-- [📡 WebSocket Connection Process](#-websocket-connection-process)
-- [💬 Message Sending Flow](#-message-sending-flow)
-- [📥 Message Receiving Flow](#-message-receiving-flow)
-- [✅ Read Receipt System](#-read-receipt-system)
-- [🔔 Notification Broadcasting](#-notification-broadcasting)
-- [🎨 Frontend Real-Time Updates](#-frontend-real-time-updates)
-- [📊 Sequence Diagrams](#-sequence-diagrams)
-- [🐛 Debugging Real-Time Issues](#-debugging-real-time-issues)
+- [ Overview](#-overview)
+- [ Architecture Components](#-architecture-components)
+- [ Complete Message Flow](#-complete-message-flow)
+- [ WebSocket Connection Process](#-websocket-connection-process)
+- [ Message Sending Flow](#-message-sending-flow)
+- [ Message Receiving Flow](#-message-receiving-flow)
+- [ Read Receipt System](#-read-receipt-system)
+- [ Notification Broadcasting](#-notification-broadcasting)
+- [ Frontend Real-Time Updates](#-frontend-real-time-updates)
+- [ Sequence Diagrams](#-sequence-diagrams)
+- [ Debugging Real-Time Issues](#-debugging-real-time-issues)
 
 ---
 
-## 🎯 Overview
+##  Overview
 
 The TALL Stack Chat App implements real-time messaging using **Laravel's Broadcasting system** with **Pusher WebSocket** service. The architecture ensures instant message delivery, read receipts, and live UI updates without page refreshes.
 
-### 🔑 Key Real-Time Features
+###  Key Real-Time Features
 - **Instant Message Delivery** via WebSocket
 - **Automatic Read Receipts** when messages are viewed
 - **Live Conversation Updates** in chat list
 - **Optimistic UI Updates** for better user experience
 - **Queued Notifications** for reliable delivery
 
-### 🛠️ Technology Stack
+###  Technology Stack
 - **Backend**: Laravel 11 + Livewire 3 + Pusher PHP SDK
 - **Frontend**: Alpine.js + Laravel Echo + Pusher JS
 - **WebSocket**: Pusher Channels (Private Channels)
@@ -40,9 +40,9 @@ The TALL Stack Chat App implements real-time messaging using **Laravel's Broadca
 
 ---
 
-## 🏗️ Architecture Components
+##  Architecture Components
 
-### 📡 **Broadcasting Components**
+###  **Broadcasting Components**
 ```php
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
 │   User Action   │───▶│   Livewire       │───▶│   Database      │
@@ -56,7 +56,7 @@ The TALL Stack Chat App implements real-time messaging using **Laravel's Broadca
 └─────────────────┘    └──────────────────┘    └─────────────────┘
 ```
 
-### 🔧 **Core Files Structure**
+###  **Core Files Structure**
 ```
 app/
 ├── Livewire/Chat/
@@ -83,9 +83,9 @@ routes/
 
 ---
 
-## 🔄 Complete Message Flow
+##  Complete Message Flow
 
-### 📋 **Step-by-Step Process**
+###  **Step-by-Step Process**
 
 ```mermaid
 sequenceDiagram
@@ -111,9 +111,9 @@ sequenceDiagram
 
 ---
 
-## 📡 WebSocket Connection Process
+##  WebSocket Connection Process
 
-### 🔌 **Connection Initialization**
+###  **Connection Initialization**
 
 #### **1. Frontend Setup (`resources/js/echo.js`)**
 ```javascript
@@ -154,7 +154,7 @@ public function getListeners()
 }
 ```
 
-### 🔐 **Security & Authentication**
+###  **Security & Authentication**
 - **Private Channels**: Only authenticated users can access their channels
 - **CSRF Protection**: Laravel's built-in CSRF protection
 - **User Verification**: Channel callbacks verify user identity
@@ -162,9 +162,9 @@ public function getListeners()
 
 ---
 
-## 💬 Message Sending Flow
+##  Message Sending Flow
 
-### 📤 **MessageForm Component Process**
+###  **MessageForm Component Process**
 
 #### **1. User Submits Message (`app/Livewire/Chat/MessageForm.php`)**
 ```php
@@ -224,9 +224,9 @@ WHERE id = 1;
 
 ---
 
-## 📥 Message Receiving Flow
+##  Message Receiving Flow
 
-### 📨 **Notification Broadcasting (`app/Notifications/MessageSent.php`)**
+###  **Notification Broadcasting (`app/Notifications/MessageSent.php`)**
 
 #### **1. Notification Structure**
 ```php
@@ -275,7 +275,7 @@ public function onBroadcastedNotifications($event)
 }
 ```
 
-### 🎨 **Frontend Real-Time Updates (`resources/views/livewire/chat/chat.blade.php`)**
+###  **Frontend Real-Time Updates (`resources/views/livewire/chat/chat.blade.php`)**
 
 #### **1. Alpine.js WebSocket Listener**
 ```javascript
@@ -300,9 +300,9 @@ x-on:scroll-bottom.window="
 
 ---
 
-## ✅ Read Receipt System
+##  Read Receipt System
 
-### 📖 **Read Receipt Flow**
+###  **Read Receipt Flow**
 
 ```mermaid
 sequenceDiagram
@@ -349,17 +349,17 @@ class MessageRead extends Notification
 ```php
 <!-- In message component -->
 @if($message->read_at && $isMine)
-    <span class="text-xs text-blue-500">✓✓ Read</span>
+    <span class="text-xs text-blue-500"> Read</span>
 @elseif($isMine)
-    <span class="text-xs text-gray-400">✓ Sent</span>
+    <span class="text-xs text-gray-400"> Sent</span>
 @endif
 ```
 
 ---
 
-## 🔔 Notification Broadcasting
+##  Notification Broadcasting
 
-### ⚡ **Queue Processing**
+###  **Queue Processing**
 
 #### **1. Queue Configuration (`config/queue.php`)**
 ```php
@@ -390,7 +390,7 @@ php artisan queue:monitor
 - **Error Handling**: Failed notifications logged for debugging
 - **Graceful Degradation**: App works even if WebSocket fails
 
-### 📡 **Broadcasting Configuration (`config/broadcasting.php`)**
+###  **Broadcasting Configuration (`config/broadcasting.php`)**
 ```php
 'pusher' => [
     'driver' => 'pusher',
@@ -406,9 +406,9 @@ php artisan queue:monitor
 
 ---
 
-## 🎨 Frontend Real-Time Updates
+##  Frontend Real-Time Updates
 
-### 🔄 **Livewire Real-Time Features**
+###  **Livewire Real-Time Features**
 
 #### **1. Component Communication**
 ```php
@@ -445,9 +445,9 @@ x-on:scroll-bottom.window="
 
 ---
 
-## 📊 Sequence Diagrams
+##  Sequence Diagrams
 
-### 💬 **Complete Message Exchange**
+###  **Complete Message Exchange**
 
 ```
 User A (Sender)                 Laravel Backend                 User B (Receiver)
@@ -472,7 +472,7 @@ User A (Sender)                 Laravel Backend                 User B (Receiver
       ◀─────────────────────────────┤                              │
 ```
 
-### 🔌 **WebSocket Connection Flow**
+###  **WebSocket Connection Flow**
 
 ```
 Browser                     Laravel                     Pusher
@@ -493,9 +493,9 @@ Browser                     Laravel                     Pusher
 
 ---
 
-## 🐛 Debugging Real-Time Issues
+##  Debugging Real-Time Issues
 
-### 🔍 **Common Issues & Solutions**
+###  **Common Issues & Solutions**
 
 #### **1. WebSocket Connection Problems**
 ```bash
@@ -544,7 +544,7 @@ php artisan telescope:install
 # - HTTP requests
 ```
 
-### 📊 **Performance Monitoring**
+###  **Performance Monitoring**
 
 #### **1. Queue Metrics**
 ```bash
@@ -576,7 +576,7 @@ $conversations = $user->conversations()
 
 ---
 
-## 🎯 Summary
+##  Summary
 
 The TALL Stack Chat App demonstrates a robust real-time messaging architecture that combines:
 
